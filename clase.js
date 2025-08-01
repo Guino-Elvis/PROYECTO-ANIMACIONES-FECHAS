@@ -1,29 +1,23 @@
 const frases = [
-  "hola de nuevo",
-  "bienvenido",
-  "esto es magia",
-  "texto aleatorio",
-  "apareciendo...",
-  "desapareciendo..."
+  "Feliz Día de la Novia, Mery 💖",
+  "Gino y Mery por 100Pre 💍",
+  "Amar no es mirarse el uno al otro; es mirar juntos en la misma dirección, Mery. ⭐",
+  "Un mundo nace cuando dos se besan... y yo nací contigo, Mery. ⭐",
+  "Estar contigo o no estar contigo es la medida de mi tiempo, Mery. ❤️",
+  "El amor no tiene cura, pero tú eres mi medicina, Mery. ⭐",
+  "Si sé lo que es el amor, es gracias a ti ⭐",
+  "Cada instante contigo es un tesoro ❤️",
 ];
 
-let imagenes = [];
 
-// 🔄 Carga automática de imágenes desde la carpeta ./img/
-async function cargarImagenes() {
-  try {
-    const resp = await fetch("./img/");
-    const text = await resp.text();
-    // Extrae los archivos válidos por su extensión
-    const archivos = Array.from(
-      text.matchAll(/href="([^"]+\.(png|jpg|jpeg|gif|svg))"/gi),
-      m => m[1]
-    );
-    imagenes = archivos;
-  } catch (err) {
-    console.warn("No se pudo cargar imágenes automáticamente", err);
-  }
-}
+const imagenes = [
+  "1.jpeg",
+  "2.jpeg",
+  "3.jpeg",
+  "4.jpeg",
+  "5.jpeg",
+  "6.jpeg"
+];
 
 // 🎨 Color neón brillante
 function generarColorNeon() {
@@ -65,16 +59,16 @@ function generarDestinoAleatorio() {
 
 // 🌟 Crea un elemento animado: texto o imagen
 function crearElementoAnimado() {
-  const usarImagen = imagenes.length && Math.random() < 0.3; // 30% imagen, 70% texto
+  const usarImagen = imagenes.length && Math.random() < 0.1; // 10% imagen, 90% texto
   let el;
 
   if (usarImagen) {
     const src = imagenes[Math.floor(Math.random() * imagenes.length)];
     el = document.createElement("img");
     el.src = `./img/${src}`;
-    el.style.width = `${Math.floor(Math.random() * 40) + 30}px`;
+    el.style.width = `${Math.floor(Math.random() * 40) + 60}px`; // tamaño un poco mayor
     el.style.height = "auto";
-    el.style.filter = "drop-shadow(0 0 15px white)";
+    el.style.border = "2px solid white"; // solo para testeo
   } else {
     el = document.createElement("div");
     el.textContent = frases[Math.floor(Math.random() * frases.length)];
@@ -94,9 +88,8 @@ function crearElementoAnimado() {
 }
 
 // 🚀 Iniciar todo al cargar
-async function iniciarAnimacion() {
-  await cargarImagenes();
-  setInterval(crearElementoAnimado, 150);
+function iniciarAnimacion() {
+  setInterval(crearElementoAnimado, 180);
 }
 
 window.addEventListener("DOMContentLoaded", iniciarAnimacion);
