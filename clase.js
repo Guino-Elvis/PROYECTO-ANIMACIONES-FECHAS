@@ -92,4 +92,19 @@ function iniciarAnimacion() {
   setInterval(crearElementoAnimado, 180);
 }
 
-window.addEventListener("DOMContentLoaded", iniciarAnimacion);
+document.getElementById("btnIniciar").addEventListener("click", () => {
+  // 🎵 Reproducir música
+  const audio = document.getElementById("musicaFondo");
+  audio.play();
+
+  // 💨 Ocultar el botón con animación
+  const btn = document.getElementById("btnIniciar");
+  btn.style.transition = "all 0.8s ease";
+  btn.style.opacity = "0";
+  btn.style.transform = "scale(1.5)";
+  setTimeout(() => btn.style.display = "none", 800);
+
+  // 🌟 Iniciar animaciones de frases e imágenes
+  iniciarAnimacion();
+});
+// window.addEventListener("DOMContentLoaded", iniciarAnimacion);
